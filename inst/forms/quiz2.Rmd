@@ -1,0 +1,29 @@
+---
+title: "R/exams quiz"
+output:
+  html_document:
+    toc: true
+    css: ../webex/webex.css
+    includes:
+      after_body: ../webex/webex.js
+---
+
+```{r setup, include = FALSE}
+## package and list of various exercises
+library("exams2forms")
+exm <- list(
+    c("swisscapital.Rmd", "capitals.Rmd"),
+    "deriv.Rnw",
+    "deriv2.Rnw",
+    "fruit.Rmd",
+    "boxplots.Rmd",
+    "ttest.Rmd",
+    "function.Rmd",
+    "lm2.Rnw",
+    "fourfold2.Rmd"
+)
+```
+
+```{r quiz, echo = FALSE, message = FALSE, results = "asis"}
+exams2forms(exm)
+```
