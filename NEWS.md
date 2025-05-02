@@ -1,3 +1,53 @@
+# exams2forms 0.2-0
+
+* Based on the package vignette, the R/exams web page has a tutorial
+  for `exams2forms`: <https://www.R-exams.org/tutorials/exams2forms/>.
+  
+* Some small improvements in `webex.css` and `webex.js` so that
+  `exams2forms` output also renders correctly in jekyll projects,
+  in particular with the feeling responsive theme used on
+  <https://www.R-exams.org/>.
+  
+* All exercise template pages on the R/exams web page now feature an
+  interactive preview generated with `exams2forms` using three random
+  variations of each exercise. See <https://www.R-exams.org/templates/boxplots/>
+  or <https://www.R-exams.org/templates/lm2/> for two examples.
+
+* The function `exams2forms()` as well as all underlying `forms_*()`
+  functions gained an argument `obfuscate = TRUE` which provides some
+  basic obfuscation of the correct answers for all forms in the
+  underlying HTML code. Thus, all correct answers are still stored in
+  the HTML but, by default, they are not easily readable anymore.
+
+* The function `exams2forms()` gained additional arguments `auto`,
+  `show_filename`, and `show_tolerance`, which are useful for inspecting
+  exercises during their development. See `exams2webquiz("lm2.Rmd", auto = TRUE)`
+  to see the results: all forms are pre-filled with check enabled and
+  the display includes solution, tolerances, and the file name.
+
+* In `forms_num()` the correct `answer` is now assured to be formatted
+  without scientific notation.
+
+* In the answer lists of single- and multiple-choice exercises
+  single quotes are no longer escaped by `forms_schoice()` and
+  `forms_mchoice()` so that expressions like $f'(x)$ render correctly.
+
+* The package now ships with some example exercises that illustrate
+  a feature of `exams2forms` that is not (or not easily) available
+  in other `exams2xyz` interfaces: regular expressions for the correct
+  answers of `string` exercises. To generate a demo quiz with these
+  you can use:
+
+  `exams2webquiz(c("geography2.Rmd", "email.Rmd"), regex = TRUE, n = 3, edir = system.file(package = "exams2forms"))`
+
+  - The exercise `geography2.Rmd` simply lists several solutions that are
+    accepted using "or" regular expressions: `^(answer1|answer2|answer3)$`
+  - The exercise `email.Rmd` has a more complex regular expression for
+    checking the validity of e-mail addresses.
+  - Furthermore, `geography.Rmd` is a multiple-choice version of the
+    `geography2.Rmd` exercise.
+
+
 # exams2forms 0.1-0
 
 * New R/exams (<https://www.R-exams.org/>) interface for

@@ -14,14 +14,14 @@ library("exams2forms")
 exams2forms(c("swisscapital.Rmd", "deriv.Rmd"), n = 3)
 
 ## ----first-steps-webquiz------------------------------------------------------
-#  library("exams2forms")
-#  exams2webquiz(c("swisscapital.Rmd", "deriv.Rmd"), n = 3)
+# library("exams2forms")
+# exams2webquiz(c("swisscapital.Rmd", "deriv.Rmd"), n = 3)
 
 ## ----more-examples------------------------------------------------------------
 exams2forms(c("capitals.Rmd", "function.Rmd", "fruit.Rmd", "lm2.Rmd"))
 
 ## ----more-examples-webquiz----------------------------------------------------
-#  exams2webquiz(c("capitals.Rmd", "function.Rmd", "fruit.Rmd", "lm2.Rmd"))
+# exams2webquiz(c("capitals.Rmd", "function.Rmd", "fruit.Rmd", "lm2.Rmd"))
 
 ## ----eval=TRUE, echo=FALSE, results="asis"------------------------------------
 writeLines(paste0("    ", readLines(

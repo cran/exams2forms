@@ -11,13 +11,14 @@ based on R/exams exercise templates.
 
 \usage{
 exams2forms(file,
-  write = TRUE, check = TRUE, box = TRUE, solution = TRUE, nchar = c(20, 100),
+  write = TRUE, check = TRUE, box = TRUE, solution = TRUE, nchar = c(20, 40),
   schoice_display = "buttons", mchoice_display = "buttons",
   cloze_schoice_display = "dropdown", cloze_mchoice_display = mchoice_display,
-  usecase = TRUE, usespace = TRUE,
+  usecase = TRUE, usespace = TRUE, auto = FALSE,
+  show_filename = !isFALSE(auto), show_tolerance = !isFALSE(auto),
   n = 1L, nsamp = NULL, dir = ".", edir = NULL, tdir = NULL, sdir = NULL, verbose = FALSE,
   quiet = TRUE, resolution = 100, width = 4, height = 4, svg = FALSE,
-  converter = "pandoc-mathjax", base64 = NULL, \dots)
+  converter = "pandoc-mathjax", base64 = NULL, obfuscate = TRUE, \dots)
 }
 
 \arguments{
@@ -45,6 +46,17 @@ exams2forms(file,
       If \code{FALSE} spaces are ignored when evaluating correct answers.}
   \item{usecase}{logical. Defaults to \code{TRUE}, only used for string questions.
       If \code{FALSE} answers are evaluated ignoring uppercase/lowercase.}
+  \item{auto}{logical or named list/vector. If set to \code{TRUE}, the form
+    fields are prefilled, the check button is clicked, the solution button
+    (if any) is clicked, and the order of the exercises (if \code{n > 1})
+    is not shuffled. The options can also be controlled separately if
+    \code{auto} is a named list/vector with (a subset of the) names
+    \code{prefill}, \code{check}, \code{solution}, \code{noshuffle}.}
+  \item{show_filename}{logical. Should the tolerance for numeric fields be
+    shown before the field? Enabled by default only if the form is
+    \code{auto}-filled/clicked.}
+  \item{show_tolerance}{logical. Should the filename be displayed in the
+    form? Enabled by default only if the form is \code{auto}-filled/clicked.}
   \item{n}{integer. The number of copies to be taken from \code{file}.}
   \item{nsamp}{integer. The number(s) of exercise files sampled from each
     list element of \code{file}. Sampling without replacement is used
@@ -75,6 +87,9 @@ exams2forms(file,
     Passed on to \code{\link[exams]{make_exercise_transform_pandoc}}.
     The default is to enable Base 64 when an HTML-type document is produced.}
   \item{\dots}{currently not used.}
+  \item{obfuscate}{logical. Should the correct answer be obfuscated when
+    embedded in the HTML source code? If \code{FALSE}, it is included as
+    plain text.}
 }
 
 \details{
@@ -82,7 +97,8 @@ exams2forms(file,
   R/exams (\url{https://www.R-exams.org/}) in R/Markdown or Quarto documents.
   This is done by rendering the exercises (either in .Rnw or .Rmd format)
   into Markdown which can then be included in .Rmd or .qmd
-  documents.
+  documents. For a short introduction see
+  \url{https://www.R-exams.org/tutorials/exams2forms/}.
   
   The function \code{\link[exams2forms]{exams2webquiz}}
   can set up a suitable .Rmd file and directly render it. This is intended mostly
@@ -105,25 +121,25 @@ exams2forms(file,
 }
 
 \examples{
-## Example R/exams exercise: string, num, schoice, mchoice
+## example R/exams exercises: string, num, schoice, mchoice
 exams2forms("function.Rmd")
 exams2forms("deriv.Rmd")
 exams2forms("swisscapital.Rmd")
 exams2forms("switzerland.Rmd")
 
-## Usually exams2forms() is used within R/Markdown or Quarto tutorials,
+## usually exams2forms() is used within R/Markdown or Quarto tutorials,
 ## two example files are shipped within the package.
 ## - questions.Rmd: all questions set up indvidually
 ## - quiz.Rmd: an entire quiz set up in one go
 lr <- system.file("forms", package = "exams2forms")
 dir(lr)
 
-## The quiz.Rmd file is rather short and straightforward.
+## quiz.Rmd is rather short and straightforward
 rmd <- file.path(lr, "quiz.Rmd")
 writeLines(readLines(rmd))
 
 \dontrun{
-## Either .Rmd file can be loaded in RStudio and render from there or
+## either .Rmd file can be loaded in RStudio and rendered from there or
 ## using the command line, e.g.,
 rmarkdown::render(rmd)
 }
