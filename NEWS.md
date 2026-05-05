@@ -1,3 +1,16 @@
+# exams2forms 0.2-1
+
+* Answer entered in `string` forms were not processed correctly if the
+  correct solution could be mapped to a number. Fixed now in `webex.js`.
+  (Reported by Chad Worley in https://stackoverflow.com/questions/79934347)
+
+* Small fix in `webex.js` for the setting with `show_tolerance = TRUE`
+  and `n > 1`.
+
+* The `converter` argument in `exams2forms()` was not used and has
+  hence been dropped.
+  
+
 # exams2forms 0.2-0
 
 * Based on the package vignette, the R/exams web page has a tutorial
