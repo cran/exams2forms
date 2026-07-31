@@ -53,6 +53,8 @@ exams2forms <- function(file,
     if ("noshuffle" %in% names(auto)) {
       noshuffle <- auto$noshuffle
       auto$noshuffle <- NULL
+    } else {
+      noshuffle <- TRUE # Defaults to 'noshuffle' if not specified by user
     }
     nam <- names(auto)
     nam <- nam[!(nam %in% c("prefill", "check", "solution", "tolerance"))]

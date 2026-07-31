@@ -1,3 +1,12 @@
+# exams2forms 0.2-2
+
+* The source code of the `exams2forms` package is now hosted on Codeberg at
+  <https://codeberg.org/zeileis/exams2forms> where bugs can be reported in the
+  issues and pull requests can be made etc. Development versions of the
+  package can be conveniently installed from R-universe via:
+  `install.packages("exams2forms", repos = "https://zeileis.R-universe.dev")`
+
+
 # exams2forms 0.2-1
 
 * Answer entered in `string` forms were not processed correctly if the
